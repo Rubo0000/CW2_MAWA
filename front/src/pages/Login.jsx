@@ -1,21 +1,41 @@
-import React from "react";
-import { Container, TextField, Button, Box, Typography } from "@mui/material";
+import { useState } from "react";
+import { TextField, Button, Box, Typography, Paper } from "@mui/material";
 
-function Login() {
+const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = () => {
+    console.log("Login with:", email, password);
+  };
+
   return (
-    <Container>
-      <Typography variant="h4" sx={{ marginY: 3 }}>
+    <Paper elevation={3} style={{ padding: "2rem", maxWidth: "400px", margin: "2rem auto" }}>
+      <Typography variant="h5" gutterBottom>
         Login
       </Typography>
-      <Box component="form" noValidate autoComplete="off" sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-        <TextField label="Email" variant="outlined" fullWidth />
-        <TextField label="Password" variant="outlined" type="password" fullWidth />
-        <Button variant="contained" color="primary" type="submit">
+      <Box display="flex" flexDirection="column" gap="1rem">
+        <TextField
+          label="Email"
+          variant="outlined"
+          fullWidth
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <TextField
+          label="Password"
+          type="password"
+          variant="outlined"
+          fullWidth
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <Button variant="contained" color="primary" onClick={handleLogin}>
           Login
         </Button>
       </Box>
-    </Container>
+    </Paper>
   );
-}
+};
 
 export default Login;

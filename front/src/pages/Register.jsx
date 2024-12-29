@@ -1,23 +1,68 @@
-import React from "react";
-import { Container, TextField, Button, Box, Typography } from "@mui/material";
+import { useState } from "react";
+import { TextField, Button, Box, Typography, Paper } from "@mui/material";
 
-function Register() {
+const Register = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    bioId: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleRegister = () => {
+    console.log("Register with:", formData);
+  };
+
   return (
-    <Container>
-      <Typography variant="h4" sx={{ marginY: 3 }}>
+    <Paper elevation={3} style={{ padding: "2rem", maxWidth: "400px", margin: "2rem auto" }}>
+      <Typography variant="h5" gutterBottom>
         Register
       </Typography>
-      <Box component="form" noValidate autoComplete="off" sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-        <TextField label="Full Name" variant="outlined" fullWidth />
-        <TextField label="Email" variant="outlined" fullWidth />
-        <TextField label="Password" variant="outlined" type="password" fullWidth />
-        <TextField label="BioID" variant="outlined" fullWidth />
-        <Button variant="contained" color="primary" type="submit">
+      <Box display="flex" flexDirection="column" gap="1rem">
+        <TextField
+          label="Name"
+          name="name"
+          variant="outlined"
+          fullWidth
+          value={formData.name}
+          onChange={handleChange}
+        />
+        <TextField
+          label="Email"
+          name="email"
+          variant="outlined"
+          fullWidth
+          value={formData.email}
+          onChange={handleChange}
+        />
+        <TextField
+          label="Password"
+          name="password"
+          type="password"
+          variant="outlined"
+          fullWidth
+          value={formData.password}
+          onChange={handleChange}
+        />
+        <TextField
+          label="Bio ID"
+          name="bioId"
+          variant="outlined"
+          fullWidth
+          value={formData.bioId}
+          onChange={handleChange}
+        />
+        <Button variant="contained" color="primary" onClick={handleRegister}>
           Register
         </Button>
       </Box>
-    </Container>
+    </Paper>
   );
-}
+};
 
 export default Register;

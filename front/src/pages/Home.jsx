@@ -1,24 +1,22 @@
-import React from "react";
-import { Container, Typography } from "@mui/material";
-import PetitionCard from "../components/petitioncard/PetitionCard";
+import { Typography, Button, Box } from "@mui/material";
+import { Link } from "react-router-dom";
 
-function Home() {
-  const handleSign = () => {
-    alert("You signed the petition!");
-  };
-
+const Home = () => {
   return (
-    <Container>
-      <Typography variant="h4" sx={{ marginY: 3 }}>
+    <Box textAlign="center" mt={5}>
+      <Typography variant="h3" gutterBottom>
         Welcome to Shangri-La Petition Platform
       </Typography>
-      <PetitionCard
-        title="Increase Funding for Education"
-        content="Request to increase the budget for public education in Shangri-La."
-        onSign={handleSign}
-      />
-    </Container>
+      <Typography variant="h6" gutterBottom>
+        Create and support petitions to make a difference.
+      </Typography>
+      <Box mt={3}>
+        <Button variant="contained" color="primary" component={Link} to="/register">
+          Get Started
+        </Button>
+      </Box>
+    </Box>
   );
-}
+};
 
 export default Home;
